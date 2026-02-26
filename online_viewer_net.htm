@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SH Net Point — Tajpur ka Sabse Bharosemand Service Center</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Sora:wght@700;800;900&display=swap" rel="stylesheet" />
+<style>
+
+/* ============================
+   RESET & ROOT
+   ============================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink:    #0D0D1A;
+  --ink2:   #1A1A2E;
+  --purple: #5C35D9;
+  --purple2:#7B5CF0;
+  --purple3:#EDE9FF;
+  --gold:   #F0B429;
+  --gold2:  #FFF3C4;
+  --teal:   #0FC4A7;
+  --white:  #FFFFFF;
+  --off:    #F8F7FF;
+  --muted:  #6B7280;
+  --border: #E5E7F0;
+  --card:   #FFFFFF;
+  --r:      16px;
+  --rs:     10px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--off);
+  overflow-x: hidden;
+}
+
+/* ============================
+   TOPBAR
+   ============================ */
+.topbar {
+  background: var(--ink);
+  padding: 10px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.6);
+}
+.tb-item { display: flex; align-items: center; gap: 8px; }
+.tb-item strong { color: var(--gold); }
+.tb-sep { width: 1px; height: 14px; background: rgba(255,255,255,0.1); }
+
+/* ============================
+   NAV
+   ============================ */
+nav {
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(16px);
+  border-bottom: 1.5px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 300;
+  padding: 0 48px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: box-shadow 0.3s;
+}
+nav.scrolled { box-shadow: 0 4px 24px rgba(92,53,217,0.1); }
+
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.brand-logo {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: linear-gradient(135deg, var(--purple), var(--purple2));
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 14px rgba(92,53,217,0.35);
+}
+.brand-logo span { font-family: 'Sora', sans-serif; font-weight: 900; font-size: 14px; color: #fff; }
+.brand-name { font-family: 'Sora', sans-serif; font-weight: 900; font-size: 17px; color: var(--ink); }
+.brand-sub { font-size: 10.5px; color: var(--purple); font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; display: block; }
+
+.nav-links { display: flex; gap: 2px; list-style: none; }
+.nav-links a {
+  padding: 7px 15px; border-radius: 8px;
+  font-size: 14px; font-weight: 600;
+  color: var(--muted); text-decoration: none;
+  transition: all 0.2s;
+}
+.nav-links a:hover { background: var(--purple3); color: var(--purple); }
+
+.nav-btn {
+  display: flex; align-items: center; gap: 7px;
+  padding: 10px 22px; border-radius: var(--rs);
+  background: var(--purple);
+  color: #fff; font-size: 14px; font-weight: 700;
+  text-decoration: none;
+  transition: all 0.25s;
+  box-shadow: 0 4px 14px rgba(92,53,217,0.35);
+}
+.nav-btn:hover { background: #4A27C8; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(92,53,217,0.45); }
+.pulse { width: 7px; height: 7px; background: #4ade80; border-radius: 50%; animation: blink 1.5s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.25} }
+
+/* ============================
+   HERO
+   ============================ */
+.hero {
+  background: var(--ink);
+  min-height: calc(100vh - 108px);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+  padding: 80px 48px;
+}
+
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 52px 52px;
+}
+.hero-blob1 {
+  position: absolute; width: 640px; height: 640px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(92,53,217,0.28) 0%, transparent 70%);
+  top: -160px; left: -160px; pointer-events: none;
+}
+.hero-blob2 {
+  position: absolute; width: 480px; height: 480px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(15,196,167,0.12) 0%, transparent 70%);
+  bottom: -120px; right: -80px; pointer-events: none;
+}
+.hero-blob3 {
+  position: absolute; width: 320px; height: 320px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(240,180,41,0.08) 0%, transparent 70%);
+  top: 40%; right: 18%; pointer-events: none;
+}
+
+.hero-content {
+  position: relative; z-index: 2;
+  text-align: center; max-width: 840px;
+}
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 7px 18px; border-radius: 100px;
+  background: rgba(92,53,217,0.2);
+  border: 1px solid rgba(92,53,217,0.35);
+  font-size: 12.5px; font-weight: 600; color: #c4b5fd;
+  margin-bottom: 30px;
+  animation: fadeUp 0.5s ease both;
+}
+.live-dot { width: 7px; height: 7px; background: #4ade80; border-radius: 50%; animation: blink 1.5s infinite; }
+
+.hero h1 {
+  font-family: 'Sora', sans-serif;
+  font-size: clamp(36px, 6vw, 68px);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.1;
+  letter-spacing: -1.5px;
+  margin-bottom: 22px;
+  animation: fadeUp 0.6s 0.1s both;
+}
+.hero h1 .hi { color: var(--gold); }
+.hero h1 .grad {
+  background: linear-gradient(135deg, var(--purple2) 0%, var(--teal) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+.hero-desc {
+  font-size: clamp(15px, 1.8vw, 18px);
+  color: rgba(255,255,255,0.55);
+  max-width: 540px; margin: 0 auto 44px;
+  font-weight: 400; line-height: 1.75;
+  animation: fadeUp 0.6s 0.2s both;
+}
+
+.hero-btns {
+  display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+  animation: fadeUp 0.6s 0.3s both;
+}
+.btn-main {
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 14px 30px; border-radius: var(--rs);
+  background: linear-gradient(135deg, var(--purple), var(--purple2));
+  color: #fff; font-size: 15px; font-weight: 700;
+  text-decoration: none; transition: all 0.25s;
+  box-shadow: 0 8px 28px rgba(92,53,217,0.45);
+}
+.btn-main:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(92,53,217,0.55); }
+.btn-out {
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 14px 28px; border-radius: var(--rs);
+  background: rgba(255,255,255,0.07);
+  border: 1.5px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.85); font-size: 15px; font-weight: 600;
+  text-decoration: none; transition: all 0.25s; backdrop-filter: blur(8px);
+}
+.btn-out:hover { background: rgba(255,255,255,0.12); transform: translateY(-2px); }
+
+.hero-stats {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px; overflow: hidden;
+  margin-top: 64px; background: rgba(255,255,255,0.03);
+  animation: fadeUp 0.6s 0.5s both;
+}
+.stat-cell {
+  padding: 24px 16px; text-align: center;
+  border-right: 1px solid rgba(255,255,255,0.07);
+  transition: background 0.3s;
+}
+.stat-cell:last-child { border-right: none; }
+.stat-cell:hover { background: rgba(255,255,255,0.06); }
+.stat-n {
+  font-family: 'Sora', sans-serif; font-weight: 900;
+  font-size: 32px; color: #fff; letter-spacing: -1px; line-height: 1;
+}
+.stat-n .accent { color: var(--gold); }
+.stat-l { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 6px; font-weight: 500; }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:none} }
+
+/* ============================
+   TICKER
+   ============================ */
+.ticker {
+  background: var(--purple);
+  padding: 13px 0; overflow: hidden; position: relative;
+}
+.ticker::before, .ticker::after {
+  content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none;
+}
+.ticker::before { left: 0; background: linear-gradient(to right, var(--purple), transparent); }
+.ticker::after  { right: 0; background: linear-gradient(to left,  var(--purple), transparent); }
+.ticker-track { display: flex; width: max-content; animation: scroll 32s linear infinite; }
+.ticker-item {
+  display: flex; align-items: center; gap: 9px;
+  padding: 0 22px; white-space: nowrap;
+  font-size: 13.5px; font-weight: 700; color: rgba(255,255,255,0.9);
+}
+.ticker-dot { color: rgba(255,255,255,0.3); font-size: 20px; padding: 0 4px; }
+@keyframes scroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+/* ============================
+   SECTION COMMON
+   ============================ */
+section { padding: 96px 48px; }
+
+.sec-label {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--purple); margin-bottom: 10px;
+}
+.sec-label::before { content:''; width: 20px; height: 2.5px; background: var(--purple); border-radius: 2px; }
+.sec-title {
+  font-family: 'Sora', sans-serif; font-weight: 900;
+  font-size: clamp(28px, 4vw, 44px);
+  color: var(--ink); line-height: 1.12; letter-spacing: -0.8px;
+  margin-bottom: 10px;
+}
+.sec-title .c-purple { color: var(--purple); }
+.sec-title .c-teal   { color: var(--teal); }
+.sec-title .c-gold   { color: var(--gold); }
+.sec-sub { font-size: 16px; color: var(--muted); max-width: 520px; line-height: 1.7; }
+
+/* ============================
+   SERVICES
+   ============================ */
+.services { background: var(--white); }
+.services-head { text-align: center; margin-bottom: 60px; }
+.services-head .sec-label { justify-content: center; }
+.services-head .sec-label::before { display: none; }
+.services-head .sec-sub { margin: 0 auto; }
+
+.svc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(264px, 1fr));
+  gap: 16px; max-width: 1160px; margin: 0 auto;
+}
+.svc-card {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r);
+  padding: 28px 24px;
+  transition: all 0.3s; cursor: default;
+  position: relative; overflow: hidden;
+}
+.svc-card::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--purple), var(--teal));
+  transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
+}
+.svc-card:hover { border-color: var(--purple3); box-shadow: 0 16px 48px rgba(92,53,217,0.1); transform: translateY(-4px); }
+.svc-card:hover::after { transform: scaleX(1); }
+.svc-card.star { background: linear-gradient(135deg, var(--purple3), #fff); border-color: var(--purple); }
+.svc-card.star::after { transform: scaleX(1); }
+
+.svc-row { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 16px; }
+.svc-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+.svc-tag {
+  font-size: 10px; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase;
+  padding: 3px 11px; border-radius: 100px;
+}
+.svc-name { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 15.5px; color: var(--ink); margin-bottom: 7px; }
+.svc-desc { font-size: 13.5px; color: var(--muted); line-height: 1.65; }
+
+/* ============================
+   PRICING
+   ============================ */
+.pricing { background: var(--ink); position: relative; overflow: hidden; }
+.pricing-glow {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 700px; height: 400px;
+  background: radial-gradient(ellipse, rgba(92,53,217,0.25) 0%, transparent 70%);
+  pointer-events: none;
+}
+.pricing-dots {
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 30px 30px; pointer-events: none;
+}
+.pricing-head { text-align: center; margin-bottom: 60px; position: relative; z-index: 1; }
+.pricing-head .sec-label { justify-content: center; color: rgba(255,255,255,0.4); }
+.pricing-head .sec-label::before { background: rgba(255,255,255,0.25); }
+.pricing-head .sec-title { color: #fff; }
+.pricing-head .sec-sub { color: rgba(255,255,255,0.45); margin: 0 auto; }
+
+.price-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px; max-width: 1100px; margin: 0 auto;
+  position: relative; z-index: 1;
+}
+.price-card {
+  background: rgba(255,255,255,0.05);
+  border: 1.5px solid rgba(255,255,255,0.09);
+  border-radius: var(--r);
+  padding: 26px 22px;
+  display: flex; flex-direction: column; gap: 10px;
+  transition: all 0.3s;
+}
+.price-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(92,53,217,0.5); transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
+.price-card.featured { background: rgba(92,53,217,0.15); border-color: rgba(92,53,217,0.4); }
+.pc-icon { font-size: 28px; }
+.pc-name { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 15px; color: #fff; line-height: 1.35; }
+.pc-bottom { display: flex; align-items: center; justify-content: space-between; margin-top: 6px; }
+.pc-price {
+  font-family: 'Sora', sans-serif; font-weight: 900;
+  font-size: 28px; color: var(--gold); letter-spacing: -0.5px; line-height: 1;
+}
+.pc-price small { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.35); }
+.pc-badge {
+  font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+  padding: 3px 11px; border-radius: 100px;
+  background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.45);
+}
+.pricing-note {
+  text-align: center; margin-top: 32px; font-size: 13.5px;
+  color: rgba(255,255,255,0.35); position: relative; z-index: 1; font-weight: 500;
+}
+.pricing-note a { color: var(--gold); font-weight: 700; text-decoration: none; }
+.pricing-note a:hover { text-decoration: underline; }
+
+/* ============================
+   WHY US
+   ============================ */
+.whyus { background: var(--off); }
+.why-wrap {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start;
+}
+.why-cards {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  margin-top: 44px;
+}
+.why-card {
+  background: var(--white); border: 1.5px solid var(--border);
+  border-radius: var(--r); padding: 22px;
+  transition: all 0.3s;
+}
+.why-card:hover { border-color: var(--purple); transform: translateY(-3px); box-shadow: 0 12px 36px rgba(92,53,217,0.1); }
+.why-ico { width: 42px; height: 42px; border-radius: 11px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 12px; }
+.why-t { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 14px; color: var(--ink); margin-bottom: 5px; }
+.why-d { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+.why-panel {
+  background: var(--ink); border-radius: 22px;
+  padding: 36px; overflow: hidden; position: relative;
+  box-shadow: 0 24px 64px rgba(13,13,26,0.3);
+}
+.why-panel::before {
+  content: ''; position: absolute; top: -80px; right: -80px;
+  width: 260px; height: 260px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(92,53,217,0.3), transparent 70%);
+}
+.panel-head {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 28px; padding-bottom: 22px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.panel-icon {
+  width: 46px; height: 46px; border-radius: 12px;
+  background: linear-gradient(135deg, var(--purple), var(--purple2));
+  display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0;
+}
+.panel-title { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 17px; color: #fff; }
+.panel-sub { font-size: 12.5px; color: rgba(255,255,255,0.4); font-weight: 500; margin-top: 2px; }
+
+.trust-row {
+  display: flex; gap: 16px; align-items: center;
+  padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.trust-row:last-child { border-bottom: none; padding-bottom: 0; }
+.trust-n {
+  font-family: 'Sora', sans-serif; font-weight: 900;
+  font-size: 36px; color: var(--gold); line-height: 1;
+  letter-spacing: -1px; flex-shrink: 0; min-width: 78px;
+}
+.trust-title { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 14.5px; color: #fff; margin-bottom: 2px; }
+.trust-desc { font-size: 12.5px; color: rgba(255,255,255,0.4); line-height: 1.5; }
+
+/* ============================
+   PROCESS (TIMELINE)
+   ============================ */
+.process { background: var(--white); }
+.process-head { text-align: center; margin-bottom: 64px; }
+.process-head .sec-label { justify-content: center; }
+.process-head .sec-label::before { display: none; }
+.process-head .sec-sub { margin: 0 auto; }
+
+.timeline {
+  max-width: 860px; margin: 0 auto;
+  display: flex; flex-direction: column;
+  position: relative;
+}
+.timeline::before {
+  content: '';
+  position: absolute; left: 35px; top: 35px; bottom: 35px; width: 2px;
+  background: linear-gradient(to bottom, var(--purple), var(--teal));
+  border-radius: 2px; z-index: 0;
+}
+.tl-row {
+  display: flex; gap: 30px; align-items: flex-start;
+  padding-bottom: 36px;
+}
+.tl-row:last-child { padding-bottom: 0; }
+
+.tl-circle {
+  width: 70px; height: 70px; border-radius: 50%; flex-shrink: 0;
+  background: var(--white); border: 2.5px solid var(--purple);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  position: relative; z-index: 1;
+  box-shadow: 0 0 0 5px var(--white), 0 4px 18px rgba(92,53,217,0.2);
+  transition: transform 0.3s;
+}
+.tl-row:nth-child(2) .tl-circle { border-color: var(--teal); box-shadow: 0 0 0 5px var(--white), 0 4px 18px rgba(15,196,167,0.2); }
+.tl-row:nth-child(3) .tl-circle { border-color: var(--gold); box-shadow: 0 0 0 5px var(--white), 0 4px 18px rgba(240,180,41,0.2); }
+.tl-row:nth-child(4) .tl-circle { border-color: #22c55e; box-shadow: 0 0 0 5px var(--white), 0 4px 18px rgba(34,197,94,0.2); }
+.tl-row:hover .tl-circle { transform: scale(1.08); }
+.tl-step-num { font-size: 9.5px; font-weight: 800; color: var(--muted); letter-spacing: 0.5px; }
+.tl-emoji { font-size: 22px; line-height: 1; }
+
+.tl-card {
+  flex: 1; background: var(--off);
+  border: 1.5px solid var(--border); border-radius: var(--r);
+  padding: 24px 28px; margin-top: 8px;
+  transition: all 0.3s;
+}
+.tl-row:hover .tl-card { border-color: var(--purple3); box-shadow: 0 8px 32px rgba(92,53,217,0.08); transform: translateX(5px); }
+.tl-row:nth-child(2):hover .tl-card { border-color: rgba(15,196,167,0.3); box-shadow: 0 8px 32px rgba(15,196,167,0.08); }
+.tl-row:nth-child(3):hover .tl-card { border-color: rgba(240,180,41,0.35); box-shadow: 0 8px 32px rgba(240,180,41,0.08); }
+.tl-row:nth-child(4):hover .tl-card { border-color: rgba(34,197,94,0.3); box-shadow: 0 8px 32px rgba(34,197,94,0.08); }
+
+.tl-title { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 17px; color: var(--ink); margin-bottom: 7px; }
+.tl-desc { font-size: 14px; color: var(--muted); line-height: 1.65; max-width: 540px; }
+.tl-chip {
+  display: inline-block; margin-top: 12px;
+  font-size: 11px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase;
+  padding: 3px 12px; border-radius: 100px;
+  background: var(--purple3); color: var(--purple);
+}
+.tl-row:nth-child(2) .tl-chip { background: rgba(15,196,167,0.1); color: var(--teal); }
+.tl-row:nth-child(3) .tl-chip { background: rgba(240,180,41,0.12); color: #b07d0a; }
+.tl-row:nth-child(4) .tl-chip { background: rgba(34,197,94,0.1); color: #16a34a; }
+
+/* CTA Strip */
+.cta-strip {
+  max-width: 860px; margin: 52px auto 0;
+  background: linear-gradient(135deg, var(--ink), #1e1040);
+  border-radius: 20px; padding: 36px 44px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 24px; flex-wrap: wrap;
+  position: relative; overflow: hidden;
+  box-shadow: 0 20px 60px rgba(13,13,26,0.2);
+}
+.cta-strip::before {
+  content: ''; position: absolute; top: -60px; right: -60px;
+  width: 220px; height: 220px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(92,53,217,0.3), transparent 70%);
+}
+.cta-strip::after {
+  content: ''; position: absolute; bottom: -40px; left: 20%;
+  width: 180px; height: 180px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(15,196,167,0.12), transparent 70%);
+}
+.cta-text { position: relative; z-index: 1; }
+.cta-h { font-family: 'Sora', sans-serif; font-weight: 900; font-size: 22px; color: #fff; margin-bottom: 5px; letter-spacing: -0.3px; }
+.cta-p { font-size: 13.5px; color: rgba(255,255,255,0.5); font-weight: 500; }
+.cta-btns { display: flex; gap: 10px; flex-wrap: wrap; position: relative; z-index: 1; }
+.cta-wa {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 24px; border-radius: var(--rs);
+  background: #16a34a; color: #fff; font-size: 14px; font-weight: 700;
+  text-decoration: none; transition: all 0.25s;
+  box-shadow: 0 4px 16px rgba(22,163,74,0.4);
+}
+.cta-wa:hover { background: #15803d; transform: translateY(-2px); }
+.cta-ph {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 22px; border-radius: var(--rs);
+  background: rgba(255,255,255,0.08); border: 1.5px solid rgba(255,255,255,0.15);
+  color: #fff; font-size: 14px; font-weight: 600;
+  text-decoration: none; transition: all 0.25s;
+}
+.cta-ph:hover { background: rgba(255,255,255,0.14); transform: translateY(-2px); }
+
+/* ============================
+   CONTACT
+   ============================ */
+.contact { background: var(--ink); position: relative; overflow: hidden; }
+.contact-glow {
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 900px; height: 350px;
+  background: radial-gradient(ellipse, rgba(92,53,217,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+.contact-dots {
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 28px 28px; pointer-events: none;
+}
+.contact-head { text-align: center; margin-bottom: 52px; position: relative; z-index: 1; }
+.contact-head .sec-label { justify-content: center; color: rgba(255,255,255,0.4); }
+.contact-head .sec-label::before { background: rgba(255,255,255,0.2); }
+.contact-head .sec-title { color: #fff; }
+.contact-head .sec-sub { color: rgba(255,255,255,0.45); margin: 0 auto; }
+
+.contact-cards {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 14px; max-width: 960px; margin: 0 auto 24px;
+  position: relative; z-index: 1;
+}
+.cc {
+  background: rgba(255,255,255,0.05);
+  border: 1.5px solid rgba(255,255,255,0.08);
+  border-radius: var(--r); padding: 28px 20px;
+  text-align: center; transition: all 0.3s;
+}
+.cc:hover { background: rgba(92,53,217,0.12); border-color: rgba(92,53,217,0.35); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.2); }
+.cc-icon { font-size: 28px; margin-bottom: 12px; }
+.cc-label { font-size: 10px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 7px; }
+.cc-val { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 15px; color: #fff; line-height: 1.4; }
+.cc-val a { color: #fff; text-decoration: none; transition: color 0.2s; }
+.cc-val a:hover { color: var(--gold); }
+
+.addr-row {
+  max-width: 960px; margin: 0 auto;
+  background: rgba(255,255,255,0.05);
+  border: 1.5px solid rgba(255,255,255,0.08);
+  border-radius: var(--r); padding: 26px 30px;
+  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+  position: relative; z-index: 1; transition: all 0.3s;
+}
+.addr-row:hover { background: rgba(92,53,217,0.1); }
+.addr-ico {
+  width: 52px; height: 52px; border-radius: 14px;
+  background: linear-gradient(135deg, var(--purple), var(--purple2));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; flex-shrink: 0;
+  box-shadow: 0 6px 20px rgba(92,53,217,0.4);
+}
+.addr-name { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 16px; color: #fff; margin-bottom: 4px; }
+.addr-text { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+.map-btn {
+  margin-left: auto; display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 22px; border-radius: var(--rs);
+  background: linear-gradient(135deg, var(--gold), #d99a15);
+  color: var(--ink); font-weight: 800; font-size: 13.5px;
+  text-decoration: none; transition: all 0.25s; flex-shrink: 0;
+  box-shadow: 0 6px 20px rgba(240,180,41,0.35);
+}
+.map-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(240,180,41,0.45); }
+
+/* ============================
+   FOOTER
+   ============================ */
+footer { background: #07091A; border-top: 1px solid rgba(255,255,255,0.05); }
+.footer-main {
+  padding: 52px 48px 36px;
+  display: flex; gap: 60px; flex-wrap: wrap;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.footer-brand-col { flex: 1; min-width: 240px; }
+.f-brand { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.f-logo {
+  width: 42px; height: 42px; border-radius: 11px;
+  background: linear-gradient(135deg, var(--purple), var(--purple2));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Sora', sans-serif; font-weight: 900; font-size: 13px; color: #fff;
+  box-shadow: 0 4px 14px rgba(92,53,217,0.35);
+}
+.f-name { font-family: 'Sora', sans-serif; font-weight: 900; font-size: 17px; color: #fff; }
+.f-sub  { font-size: 11px; color: var(--purple2); font-weight: 600; letter-spacing: 0.5px; margin-top: 1px; }
+.f-about { font-size: 13.5px; color: rgba(255,255,255,0.3); line-height: 1.7; max-width: 280px; }
+
+.footer-cols { display: flex; gap: 52px; flex-wrap: wrap; }
+.f-col { display: flex; flex-direction: column; gap: 11px; }
+.f-col-title { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 3px; }
+.f-col a { font-size: 13.5px; color: rgba(255,255,255,0.35); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+.f-col a:hover { color: var(--gold); }
+.f-col span { font-size: 13.5px; color: rgba(255,255,255,0.25); font-weight: 500; }
+
+.footer-bottom {
+  padding: 18px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 10px;
+}
+.f-copy { font-size: 12.5px; color: rgba(255,255,255,0.2); font-weight: 500; }
+.f-by   { font-size: 12.5px; color: rgba(255,255,255,0.2); font-weight: 500; }
+.f-by span { color: var(--purple2); }
+
+/* ============================
+   REVEAL ANIMATIONS
+   ============================ */
+.reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.reveal.in { opacity: 1; transform: none; }
+.d1{transition-delay:.06s} .d2{transition-delay:.12s} .d3{transition-delay:.18s}
+.d4{transition-delay:.24s} .d5{transition-delay:.30s} .d6{transition-delay:.36s}
+
+/* ============================
+   RESPONSIVE
+   ============================ */
+@media(max-width:960px){
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  section { padding: 64px 24px; }
+  .hero { padding: 64px 24px; min-height: auto; }
+  .hero-stats { grid-template-columns: repeat(2,1fr); }
+  .why-wrap { grid-template-columns: 1fr; gap: 40px; }
+  .why-panel { display: none; }
+  .contact-cards { grid-template-columns: 1fr 1fr; }
+  .addr-row { flex-direction: column; text-align: center; }
+  .map-btn { margin: 0 auto; }
+  .footer-main { padding: 40px 24px 28px; gap: 36px; }
+  .footer-bottom { padding: 16px 24px; }
+  .topbar { display: none; }
+  .price-grid { grid-template-columns: repeat(2,1fr); }
+  .cta-strip { padding: 28px 24px; }
+  .timeline::before { left: 28px; }
+  .tl-circle { width: 56px; height: 56px; }
+  .tl-emoji { font-size: 18px; }
+}
+@media(max-width:560px){
+  .hero-stats { grid-template-columns: 1fr 1fr; }
+  .why-cards  { grid-template-columns: 1fr; }
+  .contact-cards { grid-template-columns: 1fr; }
+  .price-grid { grid-template-columns: 1fr; }
+  .cta-strip { flex-direction: column; align-items: flex-start; }
+  .timeline::before { display: none; }
+  .footer-cols { gap: 32px; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="tb-item">📞 Call / WhatsApp: <strong>+91 8677053159</strong></div>
+  <div class="tb-sep"></div>
+  <div class="tb-item">🕐 Mon–Sat &nbsp;<strong>9:00 AM – 8:00 PM</strong></div>
+  <div class="tb-sep"></div>
+  <div class="tb-item">📍 Tajpur, Samastipur – 848131</div>
+</div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="brand">
+    <div class="brand-logo"><span>SH</span></div>
+    <div>
+      <div class="brand-name">SH Net Point</div>
+      <span class="brand-sub">Trusted Service Center</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#whyus">Kyun Hum?</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="https://wa.me/918677053159" class="nav-btn">
+    <div class="pulse"></div>
+    WhatsApp Karein
+  </a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-blob1"></div>
+  <div class="hero-blob2"></div>
+  <div class="hero-blob3"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">
+      <div class="live-dot"></div>
+      Aaj Khula Hai — Aayein Ya WhatsApp Karein
+    </div>
+
+    <h1>
+      Har Zaroori Kaam<br>
+      <span class="hi">Ek Hi Jagah</span> —<br>
+      <span class="grad">SH Net Point</span>
+    </h1>
+
+    <p class="hero-desc">
+      Form filling, College Admission, Certificates, Ticket Booking — fast, sahi aur affordable. Koi tension nahi, hum hain na!
+    </p>
+
+    <div class="hero-btns">
+      <a href="#services" class="btn-main">Sabhi Services Dekho →</a>
+      <a href="#contact" class="btn-out">📞 Abhi Contact Karo</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-cell">
+        <div class="stat-n"><span class="accent">5000</span>+</div>
+        <div class="stat-l">Satisfied Customers</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-n"><span class="accent">5</span>+</div>
+        <div class="stat-l">Saal Ka Experience</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-n"><span class="accent">30</span>+</div>
+        <div class="stat-l">Different Services</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-n"><span class="accent">100</span>%</div>
+        <div class="stat-l">Accuracy Guarantee</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item">📋 Form Filling</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">🎓 College Admission</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">📸 Passport Photo — ₹40</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">🖨️ Photocopy — ₹3</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">🖨️ Print Out — ₹10</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">🖼️ Lamination — ₹20</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">✈️ Plane Ticket</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">🚂 Train Ticket</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">🪪 PAN Card</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">🆔 Aadhar Card — ₹80</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">📜 Jaati Certificate — ₹50</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">🏠 Niwas Certificate — ₹50</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">💰 Aay Certificate — ₹50</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">📋 Form Filling</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">🎓 College Admission</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">📸 Passport Photo — ₹40</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">🖨️ Photocopy — ₹3</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">🖨️ Print Out — ₹10</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">🖼️ Lamination — ₹20</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">✈️ Plane Ticket</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">🚂 Train Ticket</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">🪪 PAN Card</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">🆔 Aadhar Card — ₹80</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">📜 Jaati Certificate — ₹50</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">🏠 Niwas Certificate — ₹50</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">💰 Aay Certificate — ₹50</span><span class="ticker-dot">·</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-head reveal">
+    <div class="sec-label">Hamare Services</div>
+    <div class="sec-title">Yahan Kya Kya <span class="c-purple">Hota Hai?</span></div>
+    <p class="sec-sub">SH Net Point pe aapko milenge ye sab services — ek hi jagah, bina kisi tension ke.</p>
+  </div>
+
+  <div class="svc-grid">
+    <div class="svc-card reveal d1">
+      <div class="svc-row">
+        <div class="svc-icon" style="background:#EDE9FF">🖨️</div>
+        <span class="svc-tag" style="background:#EDE9FF;color:#5C35D9">Printing</span>
+      </div>
+      <div class="svc-name">Photocopy & Printing</div>
+      <div class="svc-desc">B&W ya Color — kisi bhi document ki photocopy ya printout. Fast aur saste mein.</div>
+    </div>
+    <div class="svc-card reveal d2">
+      <div class="svc-row">
+        <div class="svc-icon" style="background:#FFF3C4">🖼️</div>
+        <span class="svc-tag" style="background:#FFF3C4;color:#92610A">Lamination</span>
+      </div>
+      <div class="svc-name">Lamination</div>
+      <div class="svc-desc">Document, ID card ya photo — lamination karwa ke hamesha ke liye safe rakho.</div>
+    </div>
+    <div class="svc-card reveal d3">
+      <div class="svc-row">
+        <div class="svc-icon" style="background:#CCFBF1">📸</div>
+        <span class="svc-tag" style="background:#CCFBF1;color:#0D7A6A">Photo</span>
+      </div>
+      <div class="svc-name">Passport Size Photo</div>
+      <div class="svc-desc">Professional passport size photo — Aadhar, school/college, sarkari form ke liye turant.</div>
+    </div>
+    <div class="svc-card reveal d4">
+      <div class="svc-row">
+        <div class="svc-icon" style="background:#EDE9FF">✈️</div>
+        <span class="svc-tag" style="background:#EDE9FF;color:#5C35D9">Travel</span>
+      </div>
+      <div class="svc-name">Plane Ticket Booking</div>
+      <div class="svc-desc">Domestic aur International dono ke liye — hum book karte hain. Asaan aur jaldi.</div>
+    </div>
+    <div class="svc-card reveal d5">
+      <div class="svc-row">
+        <div class="svc-icon" style="background:#EDE9FF">🚂</div>
+        <span class="svc-tag" style="background:#EDE9FF;color:#5C35D9">Travel</span>
+      </div>
+      <div class="svc-name">Train Ticket Booking</div>
+      <div class="svc-desc">IRCTC se train ticket — Tatkal bhi milti hai. Koi bhi train, koi bhi class.</div>
+    </div>
+    <div class="svc-card reveal d6">
+      <div class="svc-row">
+        <div class="svc-icon" style="background:#FFF3C4">🪪</div>
+        <span class="svc-tag" style="background:#FFF3C4;color:#92610A">ID Card</span>
+      </div>
+      <div class="svc-name">PAN Card Apply & Print</div>
+      <div class="svc-desc">Naya PAN banwana hai ya reprint karna — dono yahan hota hai. Asaan aur jaldi.</div>
+    </div>
+    <div class="svc-card reveal d1">
+      <div class="svc-row">
+        <div class="svc-icon" style="background:#CCFBF1">🆔</div>
+        <span class="svc-tag" style="background:#CCFBF1;color:#0D7A6A">ID Card</span>
+      </div>
+      <div class="svc-name">Aadhar Print & Update</div>
+      <div class="svc-desc">Aadhar print karo ya update karwao — naam, address, mobile sab theek ho jaata hai.</div>
+    </div>
+    <div class="svc-card reveal d2">
+      <div class="svc-row">
+        <div class="svc-icon" style="background:#EDE9FF">📜</div>
+        <span class="svc-tag" style="background:#EDE9FF;color:#5C35D9">Certificate</span>
+      </div>
+      <div class="svc-name">Jaati Praman Patra</div>
+      <div class="svc-desc">SC/ST/OBC certificate ke liye apply karo yahan se. Sahi documents ke saath jaldi process.</div>
+    </div>
+    <div class="svc-card reveal d3">
+      <div class="svc-row">
+        <div class="svc-icon" style="background:#CCFBF1">🏠</div>
+        <span class="svc-tag" style="background:#CCFBF1;color:#0D7A6A">Certificate</span>
+      </div>
+      <div class="svc-name">Niwas Praman Patra</div>
+      <div class="svc-desc">Residence Certificate — school, college ya sarkari kaam ke liye. Hum apply karte hain.</div>
+    </div>
+    <div class="svc-card reveal d4">
+      <div class="svc-row">
+        <div class="svc-icon" style="background:#FFF3C4">💰</div>
+        <span class="svc-tag" style="background:#FFF3C4;color:#92610A">Certificate</span>
+      </div>
+      <div class="svc-name">Aay Praman Patra</div>
+      <div class="svc-desc">Income Certificate — scholarship ya sarkari form ke liye zaroori. Yahan se apply karo.</div>
+    </div>
+    <div class="svc-card star reveal d5">
+      <div class="svc-row">
+        <div class="svc-icon" style="background:var(--purple)">🎓</div>
+        <span class="svc-tag" style="background:var(--purple);color:#fff">⭐ Most Popular</span>
+      </div>
+      <div class="svc-name" style="color:var(--purple)">College Admission Help</div>
+      <div class="svc-desc">Online form, documents, fees — pura process hum sambhalte hain. Students aur parents ke liye ekdum asaan!</div>
+    </div>
+    <div class="svc-card reveal d6">
+      <div class="svc-row">
+        <div class="svc-icon" style="background:#EDE9FF">📋</div>
+        <span class="svc-tag" style="background:#EDE9FF;color:#5C35D9">Form</span>
+      </div>
+      <div class="svc-name">Sarkari Form Filling</div>
+      <div class="svc-desc">Job, scholarship, ya scheme form — sahi tarike se bharo yahan se. Koi galti nahi.</div>
+    </div>
+    <div class="svc-card reveal d1">
+      <div class="svc-row">
+        <div class="svc-icon" style="background:#CCFBF1">💳</div>
+        <span class="svc-tag" style="background:#CCFBF1;color:#0D7A6A">Utility</span>
+      </div>
+      <div class="svc-name">Online Recharge & Bill</div>
+      <div class="svc-desc">Mobile recharge, electricity bill, DTH recharge — sabhi online payments yahan hoti hain.</div>
+    </div>
+    <div class="svc-card reveal d2">
+      <div class="svc-row">
+        <div class="svc-icon" style="background:#FFF3C4">🏦</div>
+        <span class="svc-tag" style="background:#FFF3C4;color:#92610A">Banking</span>
+      </div>
+      <div class="svc-name">Bank & Insurance Forms</div>
+      <div class="svc-desc">Bank account ya insurance form bharna — in sab mein bhi hum madad karte hain.</div>
+    </div>
+    <div class="svc-card reveal d3">
+      <div class="svc-row">
+        <div class="svc-icon" style="background:#EDE9FF">🌐</div>
+        <span class="svc-tag" style="background:#EDE9FF;color:#5C35D9">Internet</span>
+      </div>
+      <div class="svc-name">Internet Seva</div>
+      <div class="svc-desc">Email banana, online print ya kisi bhi online kaam mein madad — hum hain na!</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="pricing-glow"></div>
+  <div class="pricing-dots"></div>
+
+  <div class="pricing-head reveal">
+    <div class="sec-label">Price List</div>
+    <div class="sec-title">Hamare <span class="c-gold">Rates</span> — Bilkul Clear!</div>
+    <p class="sec-sub">Koi hidden charge nahi. Jo rate likha hai, wahi lagega. 100% transparent pricing.</p>
+  </div>
+
+  <div class="price-grid">
+    <div class="price-card reveal d1">
+      <div class="pc-icon">📄</div>
+      <div class="pc-name">Photo Copy (B&W)</div>
+      <div class="pc-bottom">
+        <div class="pc-price">₹3<small>/page</small></div>
+        <div class="pc-badge">Printing</div>
+      </div>
+    </div>
+    <div class="price-card reveal d2">
+      <div class="pc-icon">🖨️</div>
+      <div class="pc-name">Print Out</div>
+      <div class="pc-bottom">
+        <div class="pc-price">₹10<small>/page</small></div>
+        <div class="pc-badge">Printing</div>
+      </div>
+    </div>
+    <div class="price-card reveal d3">
+      <div class="pc-icon">🖼️</div>
+      <div class="pc-name">Lamination</div>
+      <div class="pc-bottom">
+        <div class="pc-price">₹20<small>/sheet</small></div>
+        <div class="pc-badge">Lamination</div>
+      </div>
+    </div>
+    <div class="price-card reveal d4">
+      <div class="pc-icon">📸</div>
+      <div class="pc-name">Passport Size Photo</div>
+      <div class="pc-bottom">
+        <div class="pc-price">₹40<small>/set</small></div>
+        <div class="pc-badge">Photo</div>
+      </div>
+    </div>
+    <div class="price-card featured reveal d5">
+      <div class="pc-icon">🆔</div>
+      <div class="pc-name">Aadhar Card Print / Update</div>
+      <div class="pc-bottom">
+        <div class="pc-price">₹80<small>/card</small></div>
+        <div class="pc-badge">ID Card</div>
+      </div>
+    </div>
+    <div class="price-card reveal d6">
+      <div class="pc-icon">🪪</div>
+      <div class="pc-name">Aapar ID</div>
+      <div class="pc-bottom">
+        <div class="pc-price">₹50</div>
+        <div class="pc-badge">ID Card</div>
+      </div>
+    </div>
+    <div class="price-card reveal d1">
+      <div class="pc-icon">📜</div>
+      <div class="pc-name">Jaati Praman Patra</div>
+      <div class="pc-bottom">
+        <div class="pc-price">₹50</div>
+        <div class="pc-badge">Certificate</div>
+      </div>
+    </div>
+    <div class="price-card reveal d2">
+      <div class="pc-icon">💰</div>
+      <div class="pc-name">Aay Praman Patra</div>
+      <div class="pc-bottom">
+        <div class="pc-price">₹50</div>
+        <div class="pc-badge">Certificate</div>
+      </div>
+    </div>
+    <div class="price-card reveal d3">
+      <div class="pc-icon">🏠</div>
+      <div class="pc-name">Awasi (Niwas) Praman Patra</div>
+      <div class="pc-bottom">
+        <div class="pc-price">₹50</div>
+        <div class="pc-badge">Certificate</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="pricing-note reveal">
+    ⚠️ Prices may vary. Exact rate ke liye &nbsp;<a href="https://wa.me/917635090658">WhatsApp karein →</a>
+  </p>
+</section>
+
+<!-- WHY US -->
+<section class="whyus" id="whyus">
+  <div class="why-wrap">
+    <div>
+      <div class="reveal">
+        <div class="sec-label">Kyun Chunein Hume</div>
+        <div class="sec-title">SH Net Point <span class="c-purple">Hi Kyun?</span></div>
+        <p class="sec-sub">Bahut saari dukanen hain — lekin SH Net Point khaas kyun hai? In 6 wajahon ki wajah se.</p>
+      </div>
+      <div class="why-cards">
+        <div class="why-card reveal d1">
+          <div class="why-ico" style="background:#EDE9FF">⚡</div>
+          <div class="why-t">Jaldi Kaam</div>
+          <div class="why-d">Aapka time bahut qimti hai. Hum jaldi se jaldi kaam niptaate hain.</div>
+        </div>
+        <div class="why-card reveal d2">
+          <div class="why-ico" style="background:#CCFBF1">✅</div>
+          <div class="why-t">100% Accuracy</div>
+          <div class="why-d">Galti ka koi chance nahi — experience ke saath sahi kaam hota hai.</div>
+        </div>
+        <div class="why-card reveal d3">
+          <div class="why-ico" style="background:#FFF3C4">💰</div>
+          <div class="why-t">Saste Rates</div>
+          <div class="why-d">Reasonable price, koi hidden charges nahi. Seedha rate batate hain.</div>
+        </div>
+        <div class="why-card reveal d4">
+          <div class="why-ico" style="background:#EDE9FF">🤝</div>
+          <div class="why-t">Helpful Staff</div>
+          <div class="why-d">Students se lekar buzurgon tak — sab ke liye step-by-step guide.</div>
+        </div>
+        <div class="why-card reveal d5">
+          <div class="why-ico" style="background:#CCFBF1">🔒</div>
+          <div class="why-t">Documents Safe</div>
+          <div class="why-d">Aapki personal info poori tarah secure. Kisi ke saath share nahi.</div>
+        </div>
+        <div class="why-card reveal d6">
+          <div class="why-ico" style="background:#FFF3C4">📍</div>
+          <div class="why-t">Central Location</div>
+          <div class="why-d">Tajpur ke beech mein — aana jaana bilkul asaan hai.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="why-panel reveal">
+      <div class="panel-head">
+        <div class="panel-icon">🏆</div>
+        <div>
+          <div class="panel-title">Hamare Numbers</div>
+          <div class="panel-sub">Jo bolte hain woh karte hain</div>
+        </div>
+      </div>
+      <div class="trust-row">
+        <div class="trust-n">5K+</div>
+        <div>
+          <div class="trust-title">Happy Customers</div>
+          <div class="trust-desc">Hazaron log hum par bharosa karte hain</div>
+        </div>
+      </div>
+      <div class="trust-row">
+        <div class="trust-n">5+</div>
+        <div>
+          <div class="trust-title">Saal Ka Tajurba</div>
+          <div class="trust-desc">Experience ke saath kaam, koi galti nahi</div>
+        </div>
+      </div>
+      <div class="trust-row">
+        <div class="trust-n">30+</div>
+        <div>
+          <div class="trust-title">Different Services</div>
+          <div class="trust-desc">Ek hi jagah itni saari services milti hain</div>
+        </div>
+      </div>
+      <div class="trust-row">
+        <div class="trust-n">₹0</div>
+        <div>
+          <div class="trust-title">Hidden Charges</div>
+          <div class="trust-desc">Jo rate bataya wahi lagega — koi surprise nahi</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="process-head reveal">
+    <div class="sec-label">Hamara Process</div>
+    <div class="sec-title">Kaam Kaise <span class="c-teal">Hota Hai?</span></div>
+    <p class="sec-sub">Bas 4 asaan steps — aur aapka kaam poora. Isse simple koi nahi!</p>
+  </div>
+
+  <div class="timeline">
+    <div class="tl-row reveal d1">
+      <div class="tl-circle">
+        <div class="tl-step-num">STEP 1</div>
+        <div class="tl-emoji">🚶</div>
+      </div>
+      <div class="tl-card">
+        <div class="tl-title">Dukan Pe Aao Ya WhatsApp Karo</div>
+        <div class="tl-desc">Seedha SH Net Point aao, ya pehle WhatsApp karke poochho ki kya documents laane honge. Hum turant jawab dete hain aur poori guide karte hain.</div>
+        <span class="tl-chip">Walk-in / WhatsApp</span>
+      </div>
+    </div>
+    <div class="tl-row reveal d2">
+      <div class="tl-circle">
+        <div class="tl-step-num">STEP 2</div>
+        <div class="tl-emoji">💬</div>
+      </div>
+      <div class="tl-card">
+        <div class="tl-title">Apna Kaam Batao</div>
+        <div class="tl-desc">Kya chahiye — form filling, certificate, ticket ya kuch aur? Hum poora process seedha samjhaate hain. Koi confusion nahi, koi chakkar nahi.</div>
+        <span class="tl-chip">Free Guidance</span>
+      </div>
+    </div>
+    <div class="tl-row reveal d3">
+      <div class="tl-circle">
+        <div class="tl-step-num">STEP 3</div>
+        <div class="tl-emoji">⚙️</div>
+      </div>
+      <div class="tl-card">
+        <div class="tl-title">Hum Poora Kaam Karte Hain</div>
+        <div class="tl-desc">Aap chain se baitho — hum aapka kaam fast, accurate aur carefully karte hain. Har document submit se pehle double-check hota hai.</div>
+        <span class="tl-chip">Fast & Accurate</span>
+      </div>
+    </div>
+    <div class="tl-row reveal d4">
+      <div class="tl-circle">
+        <div class="tl-step-num">STEP 4</div>
+        <div class="tl-emoji">✅</div>
+      </div>
+      <div class="tl-card">
+        <div class="tl-title">Kaam Complete — Le Jaao!</div>
+        <div class="tl-desc">Documents ready, print hai, sab theek hai. Payment karo, apna kaam lo, aur khushi se ghar jao. SH Net Point — itna simple hai!</div>
+        <span class="tl-chip">Done ✓</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-strip reveal">
+    <div class="cta-text">
+      <div class="cta-h">Abhi Kaam Karna Hai? Hum Ready Hain! 🚀</div>
+      <div class="cta-p">Somwaar se Shanivaar &nbsp;·&nbsp; 9 AM – 8 PM &nbsp;·&nbsp; Tajpur, Samastipur</div>
+    </div>
+    <div class="cta-btns">
+      <a href="https://wa.me/918677053159" class="cta-wa">💬 WhatsApp Karo</a>
+      <a href="tel:+918677053159" class="cta-ph">📞 Call Karo</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-glow"></div>
+  <div class="contact-dots"></div>
+
+  <div class="contact-head reveal">
+    <div class="sec-label">Humse Milo</div>
+    <div class="sec-title">Contact <span class="c-gold">Karein</span></div>
+    <p class="sec-sub">WhatsApp karo, call karo, ya seedha aa jaao — hum hamesha ready hain aapki madad ke liye.</p>
+  </div>
+
+  <div class="contact-cards">
+    <div class="cc reveal d1">
+      <div class="cc-icon">📞</div>
+      <div class="cc-label">Call / WhatsApp</div>
+      <div class="cc-val"><a href="tel:+918677053159">+91 8677053159</a></div>
+    </div>
+    <div class="cc reveal d2">
+      <div class="cc-icon">🕐</div>
+      <div class="cc-label">Timing</div>
+      <div class="cc-val">Mon – Sat<br><span style="font-size:13px;opacity:0.6;font-weight:500">9:00 AM – 8:00 PM</span></div>
+    </div>
+    <div class="cc reveal d3">
+      <div class="cc-icon">📧</div>
+      <div class="cc-label">Email</div>
+      <div class="cc-val"><a href="mailto:shnetpointt@gmail.com">shnetpointt@gmail.com</a></div>
+    </div>
+    <div class="cc reveal d4">
+      <div class="cc-icon">💬</div>
+      <div class="cc-label">WhatsApp Chat</div>
+      <div class="cc-val"><a href="https://wa.me/918677053159">Message Karein ↗</a></div>
+    </div>
+  </div>
+
+  <div class="addr-row reveal">
+    <div class="addr-ico">📍</div>
+    <div>
+      <div class="addr-name">Hamare Dukan Ka Pata</div>
+      <div class="addr-text">SH Net Point, LKVD College Ke Paas, Tajpur,<br>Samastipur, Bihar – 848131</div>
+    </div>
+    <a href="https://maps.google.com" target="_blank" class="map-btn">🗺️ Google Maps pe Dekho</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-main">
+    <div class="footer-brand-col">
+      <div class="f-brand">
+        <div class="f-logo">SH</div>
+        <div>
+          <div class="f-name">SH Net Point</div>
+          <div class="f-sub">Trusted Service Center</div>
+        </div>
+      </div>
+      <p class="f-about">Form filling se lekar ticket booking tak — sab ek hi jagah. Fast, sahi, aur bilkul affordable.</p>
+    </div>
+    <div class="footer-cols">
+      <div class="f-col">
+        <div class="f-col-title">Quick Links</div>
+        <a href="#services">Services</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#whyus">Kyun Hum?</a>
+        <a href="#process">Process</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="f-col">
+        <div class="f-col-title">Contact Us</div>
+        <a href="tel:+918677053159">📞 +91 8677053159</a>
+        <a href="mailto:shnetpointt@gmail.com">📧 shnetpointt@gmail.com</a>
+        <a href="https://wa.me/918677053159">💬 WhatsApp Chat</a>
+        <span>🕐 9 AM – 8 PM (Mon–Sat)</span>
+        <span>📍 Tajpur, Samastipur – 848131</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="f-copy">© 2025 SH Net Point, Tajpur, Samastipur. All rights reserved.</div>
+    <div class="f-by">Made with ❤️ by <span>FAIZAL</span></div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.07 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  window.addEventListener('scroll', () => {
+    document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 10);
+  });
+</script>
+</body>
+</html>
